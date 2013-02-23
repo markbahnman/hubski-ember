@@ -20,10 +20,15 @@
   <![endif]-->
 </head>
 <body>
-  <script type="text/x-handlebars" data-template-name="application">
-    <h1>Hello from Ember.js</h1>
+  <script type="text/x-handlebars" data-template-name="loadButton">
+  {{#view Hubski.LoadView}}
+    <h1>Click to load</h1>
+  {{/view}}
   </script>
-
+  <script type="text/x-handlebars">
+  <div class='result'>
+  </div>
+  </script>
   <!-- The missing protocol means that it will match the current protocol, either http or https. If running locally, we use the local jQuery. -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>

@@ -1,11 +1,11 @@
 /**************************
 * Application
 **************************/
-var Hubski = Ember.Application.create();
+var Hubski = Em.Application.create();
 
-Hubski.Router = Ember.Router.extend({
-  root: Ember.Route.extend({
-    index: Ember.Route.extend({
+Hubski.Router = Em.Router.extend({
+  root: Em.Route.extend({
+    index: Em.Route.extend({
       route: '/'
     })
   })
@@ -14,25 +14,39 @@ Hubski.Router = Ember.Router.extend({
 * Models
 **************************/
 
-Hubski.ApplicationController = Ember.Controller.extend();
+
 
 /**************************
 * Views
 **************************/
-Hubski.ApplicationView = Ember.View.extend({
-  templateName: 'application'
-});
 
-Hubski.Router = Ember.Router.extend({
-  root: Ember.Route.extend({
-    index: Ember.Route.extend({
-      route: '/'
-    })
-  })
+Hubski.LoadView = Em.View.extend({
+    templateName: 'loadButton',
+    click: function(evt) {
+        urlControler.loadUrl();
+    }
 })
 
 /**************************
 * Controllers
 **************************/
 
+Hubski.ApplicationController = Em.Controller.extend();
+
+Hubski.urlControler = Em.ArrayControler.create({
+    content = [],
+    loadUrl: function() {
+        var me = this;
+        var url = 'http://hubski.com';
+
+        $.get(url, function(data) {
+            $('.result').html(data);
+            alert('Load was performed.');
+        });
+    }
+})
+
+/**************************
+* Initialization
+**************************/
 Hubski.initialize();
